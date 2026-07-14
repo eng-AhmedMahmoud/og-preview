@@ -1,0 +1,28 @@
+{
+  "name": "og-preview",
+  "version": "0.1.0",
+  "private": false,
+  "description": "See your social & search previews before you ship — preview Google, Facebook/Open Graph, X, and LinkedIn cards and copy the exact meta tags. 100% client-side, zero dependencies.",
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eng-AhmedMahmoud/og-preview.git"
+  },
+  "homepage": "https://devya.dev",
+  "author": "Ahmed Mahmoud (Devya) <contact@devya.dev>",
+  "keywords": [
+    "open-graph",
+    "og",
+    "meta-tags",
+    "seo",
+    "twitter-card",
+    "social-preview",
+    "linkedin",
+    "facebook",
+    "google-snippet",
+    "preview"
+  ],
+  "scripts": {
+    "dev": "npx --yes serve ."
+  }
+}

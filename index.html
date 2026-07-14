@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>og-preview — See your social & search previews before you ship</title>
+  <meta name="description" content="Fill in your page metadata and instantly preview how it renders on Google, Facebook, X, and LinkedIn — then copy the exact meta tags. 100% client-side." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <div class="brand">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <div class="brand-text">
+          <h1 class="app-name">og-preview</h1>
+          <p class="tagline">See your social &amp; search previews before you ship — then copy the meta tags.</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <!-- ============ FORM PANEL ============ -->
+      <section class="panel form-panel" aria-label="Page metadata">
+        <h2 class="panel-heading">Page metadata</h2>
+
+        <form id="meta-form" autocomplete="off" novalidate>
+          <div class="field">
+            <label for="f-title">Page title</label>
+            <input type="text" id="f-title" name="title"
+              value="Devya — Software agency that ships"
+              placeholder="Your page title" />
+            <div class="counter" id="c-title" aria-live="polite"></div>
+          </div>
+
+          <div class="field">
+            <label for="f-description">Description</label>
+            <textarea id="f-description" name="description" rows="3"
+              placeholder="A short, compelling summary of the page.">We design and build web apps, brand systems, and AI products. Real engineering, shipped fast.</textarea>
+            <div class="counter" id="c-description" aria-live="polite"></div>
+          </div>
+
+          <div class="field">
+            <label for="f-url">URL</label>
+            <input type="url" id="f-url" name="url"
+              value="https://devya.dev/work"
+              placeholder="https://example.com/page" />
+          </div>
+
+          <div class="field">
+            <label for="f-image">Image URL</label>
+            <input type="url" id="f-image" name="image"
+              value=""
+              placeholder="https://example.com/og-image.png (optional)" />
+            <p class="hint">Recommended 1200×630. Leave blank to preview the fallback.</p>
+          </div>
+
+          <div class="field">
+            <label for="f-site">Site name</label>
+            <input type="text" id="f-site" name="site"
+              value="Devya"
+              placeholder="Your site name" />
+          </div>
+
+          <div class="field">
+            <label for="f-card">Twitter card type</label>
+            <select id="f-card" name="card">
+              <option value="summary_large_image" selected>summary_large_image</option>
+              <option value="summary">summary</option>
+            </select>
+          </div>
+        </form>
+      </section>
+
+      <!-- ============ PREVIEW PANEL ============ -->
+      <section class="panel preview-panel" aria-label="Live previews">
+        <h2 class="panel-heading">Live previews</h2>
+
+        <!-- Google -->
+        <div class="preview-block">
+          <div class="preview-label">Google search result</div>
+          <div class="google-card">
+            <div class="google-crumb">
+              <span class="g-favicon" aria-hidden="true"></span>
+              <div class="g-crumb-text">
+                <span class="g-site" id="g-site">Devya</span>
+                <span class="g-url" id="g-url">https://devya.dev › work</span>
+              </div>
+            </div>
+            <a class="google-title" id="g-title" href="#" onclick="return false;">Devya — Software agency that ships</a>
+            <p class="google-desc" id="g-desc"></p>
+          </div>
+        </div>
+
+        <!-- Facebook / Open Graph -->
+        <div class="preview-block">
+          <div class="preview-label">Facebook / Open Graph</div>
+          <div class="fb-card">
+            <div class="fb-image" id="fb-image"></div>
+            <div class="fb-meta">
+              <div class="fb-domain" id="fb-domain">DEVYA.DEV</div>
+              <div class="fb-title" id="fb-title"></div>
+              <div class="fb-desc" id="fb-desc"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- X (Twitter) -->
+        <div class="preview-block">
+          <div class="preview-label">X (Twitter)</div>
+          <div class="tw-card" id="tw-card" data-card="summary_large_image">
+            <div class="tw-image" id="tw-image"></div>
+            <div class="tw-meta">
+              <div class="tw-title" id="tw-title"></div>
+              <div class="tw-desc" id="tw-desc"></div>
+              <div class="tw-domain" id="tw-domain">devya.dev</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LinkedIn -->
+        <div class="preview-block">
+          <div class="preview-label">LinkedIn</div>
+          <div class="li-card">
+            <div class="li-image" id="li-image"></div>
+            <div class="li-meta">
+              <div class="li-title" id="li-title"></div>
+              <div class="li-domain" id="li-domain">devya.dev</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ META TAGS OUTPUT ============ -->
+    <section class="panel meta-panel" aria-label="Generated meta tags">
+      <div class="meta-head">
+        <h2 class="panel-heading">Generated &lt;meta&gt; tags</h2>
+        <button type="button" id="copy-btn" class="copy-btn">Copy</button>
+      </div>
+      <pre class="meta-output" id="meta-output" tabindex="0" aria-label="Generated meta tags markup"></pre>
+    </section>
+
+    <footer class="site-footer">
+      <p>
+        Built by <a href="https://devya.dev" target="_blank" rel="noopener">Devya</a>
+        · <a href="https://devya.dev" target="_blank" rel="noopener">devya.dev</a>
+        · Open source (<a href="https://github.com/eng-AhmedMahmoud/og-preview" target="_blank" rel="noopener">GPL-3.0</a>)
+      </p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
